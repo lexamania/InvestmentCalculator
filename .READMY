@@ -1,0 +1,2 @@
+Slightly changed the condition because the dates are real and break them by 30 days leads to a lot of errors.
+Now every month on the same day or on the 1st of the next month (if the day is the 31st of the month) payment occurs.

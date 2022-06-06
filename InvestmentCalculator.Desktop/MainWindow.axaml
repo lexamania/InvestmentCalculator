@@ -1,3 +1,43 @@
-<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" x:Class="InvestmentCalculator.Desktop.MainWindow" Title="InvestmentCalculator.Desktop">
-    Welcome to Avalonia!
+<Window xmlns="https://github.com/avaloniaui" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		mc:Ignorable="d" 
+		x:Class="InvestmentCalculator.Desktop.MainWindow" 
+		Title="InvestmentCalculator.Desktop"
+		SizeToContent="WidthAndHeight">
+	<Panel>
+		<Grid ColumnDefinitions="auto,auto" RowDefinitions="*" HorizontalAlignment="Center" Margin="5">
+			<StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Background="Indigo" Width="200" Spacing="5">
+				<StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+					<TextBlock FontWeight="Medium" Foreground="White">Investment sum</TextBlock>
+					<TextBox BorderBrush="White" Text="{Binding InvestmentSum}" ></TextBox>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+					<TextBlock FontWeight="Medium" Foreground="White">Investment duration</TextBlock>
+					<TextBox BorderBrush="White" Text="{Binding InvestmentDurationInYears}"></TextBox>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+					<TextBlock FontWeight="Medium" Foreground="White">Investment %</TextBlock>
+					<TextBox BorderBrush="White" Text="{Binding InvestmentRate}" ></TextBox>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+					<TextBlock FontWeight="Medium" Foreground="White">Agreement data</TextBlock>
+					<TextBox BorderBrush="White" Text="{Binding AgreementDate}" ></TextBox>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Center">
+					<TextBlock FontWeight="Medium" Foreground="White">Calculation date</TextBlock>
+					<TextBox BorderBrush="White" Text="{Binding CalculationDate}" ></TextBox>
+				</StackPanel>
+				<StackPanel Orientation="Vertical" Margin="5 15 5 5" VerticalAlignment="Center" >
+					<TextBox BorderBrush="White" IsEnabled="False" Text="{Binding Result}"></TextBox>
+					<TextBlock Name="Error" Foreground="Red" FontStyle="Italic" FontSize="12" TextWrapping="Wrap" Text="{Binding State.Message}"></TextBlock>
+					<StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
+						<Button Name="Calculate" BorderBrush="White" Foreground="White" FontSize="14" Command="{Binding CalculateSum}">Calculate</Button>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+
+		</Grid>
+	</Panel>
 </Window>

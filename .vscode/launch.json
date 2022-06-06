@@ -9,7 +9,7 @@
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build all",
-			"program": "${workspaceFolder}/InvestmentCalculator.Desktop/bin/Debug/net5.0/InvestmentCalculator.Desktop.dll",
+			"program": "${workspaceFolder}/InvestmentCalculator.Desktop/bin/Debug/net6.0/InvestmentCalculator.Desktop.dll",
 			"args": [],
 			"cwd": "${workspaceFolder}/InvestmentCalculator.Desktop",
 			"console": "internalConsole",

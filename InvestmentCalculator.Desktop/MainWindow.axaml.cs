@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using InvestmentCalculator.Desktop.Models;
 
 namespace InvestmentCalculator.Desktop
 {
@@ -7,6 +8,7 @@ namespace InvestmentCalculator.Desktop
 		public MainWindow()
 		{
 			InitializeComponent();
+			this.DataContext = new CalculatorViewModel(new InvestmentCalculator.Lib.Services.InvestmentCalculator());
 		}
 	}
 }
