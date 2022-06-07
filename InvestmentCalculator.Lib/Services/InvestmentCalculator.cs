@@ -8,22 +8,22 @@ using InvestmentCalculator.Lib.Models;
 
 namespace InvestmentCalculator.Lib.Services
 {
-	public class InvestmentCalculator : IInvestmentCalculator
+	public class InvestmentCalculateService : IInvestmentCalculateService
 	{
 		private const int PAYMENT_FREQUENCY_IN_DAYS = 30;
 		private const float YEAR_LENGTH = 365.25f;
 
-		public ExecutionResult<decimal> CalculateSum(InvestmentModel model)
+		public ExecutionResult<double> CalculateSum(InvestmentModel model)
 		{
 			var valid = validation(model);
-			if (!valid.Success) return new ExecutionResult<decimal>(valid.Message);
+			if (!valid.Success) return new ExecutionResult<double>(valid.Message);
 
-			decimal sumToPay = model.InvestmentSum;
-			decimal sumToPayPerYear = sumToPay / model.InvestmentDurationInYears;
+			var sumToPay = model.InvestmentSum;
+			var sumToPayPerYear = sumToPay / model.InvestmentDurationInYears;
 			var months = (model.CalculationDate.Year - model.AgreementDate.Year) * 12 + model.CalculationDate.Month - model.AgreementDate.Month - (model.CalculationDate.Day < model.AgreementDate.Day ? 1 : 0);
 			var passesYears = months / 12;
 			var passesMonths = months % 12;
-			decimal finalSum = 0;
+			double finalSum = 0;
 			
 			// Sum by years
 			for (int i = 0; i < passesYears; i++)
@@ -34,7 +34,7 @@ namespace InvestmentCalculator.Lib.Services
 			}
 
 			// Sum by months
-			decimal paymentPerMonth = 0m;
+			double paymentPerMonth = 0;
 			for (int i = 0; i < passesMonths; i++)
 			{
 				if (i % 12 == 0)
@@ -46,13 +46,13 @@ namespace InvestmentCalculator.Lib.Services
 				sumToPay -= paymentPerMonth;
 			}
 
-			return new ExecutionResult<decimal>() { Result = finalSum };
+			return new ExecutionResult<double>() { Result = finalSum };
 		}
 
-		private decimal getPaymentPerYear(decimal total, decimal totalPerYear, float rate)
+		private double getPaymentPerYear(double total, double totalPerYear, double rate)
 		{
 			// Without changing every month
-			return totalPerYear + total * (decimal)rate / 100;
+			return totalPerYear + total * rate / 100;
 		}
 		
 		private ExecutionSuccess validation(InvestmentModel model)

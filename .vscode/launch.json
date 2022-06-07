@@ -14,6 +14,17 @@
 			"cwd": "${workspaceFolder}/InvestmentCalculator.Desktop",
 			"console": "internalConsole",
 			"stopAtEntry": false
+		},
+		{
+			"name": "Run Tests",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build tests",
+			"program": "${workspaceFolder}/InvestmentCalculator.Tests/bin/Debug/net6.0/InvestmentCalculator.Tests.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}/InvestmentCalculator.Desktop",
+			"console": "internalConsole",
+			"stopAtEntry": false
 		}
 	]
 }

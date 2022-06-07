@@ -12,8 +12,8 @@ namespace InvestmentCalculator.Desktop.Models
 {
 	public class CalculatorViewModel : INotifyPropertyChanged
 	{
-		private readonly IInvestmentCalculator _investmentCalculator;
-		public CalculatorViewModel(IInvestmentCalculator investmentCalculator)
+		private readonly IInvestmentCalculateService _investmentCalculator;
+		public CalculatorViewModel(IInvestmentCalculateService investmentCalculator)
 		{
 			_investmentCalculator = investmentCalculator;
 			State = new ExecutionSuccess();
@@ -21,10 +21,10 @@ namespace InvestmentCalculator.Desktop.Models
 
 		private DateTime _agreementDate;
 		private DateTime _calculationDate;
-		private decimal _investmentSum;
+		private double _investmentSum;
 		private float _investmentRate;
 		private int _investmentDurationInYears;
-		private decimal _result;
+		private double _result;
 		private ExecutionSuccess _state;
 
 		public DateTime AgreementDate
@@ -45,7 +45,7 @@ namespace InvestmentCalculator.Desktop.Models
 				OnPropertyChanged();
 			}
 		}
-		public decimal InvestmentSum
+		public double InvestmentSum
 		{
 			get => _investmentSum;
 			set
@@ -72,7 +72,7 @@ namespace InvestmentCalculator.Desktop.Models
 				OnPropertyChanged();
 			}
 		}
-		public decimal Result
+		public double Result
 		{
 			get => _result;
 			set
@@ -93,7 +93,14 @@ namespace InvestmentCalculator.Desktop.Models
 
 		public void CalculateSum()
 		{
-			var model = new InvestmentModel(AgreementDate, CalculationDate, InvestmentSum, InvestmentRate, InvestmentDurationInYears);
+			var model = new InvestmentModel()
+			{
+				AgreementDate = AgreementDate, 
+				CalculationDate = CalculationDate, 
+				InvestmentSum = InvestmentSum, 
+				InvestmentRate = InvestmentRate,
+				InvestmentDurationInYears = InvestmentDurationInYears
+			};
 			var result = _investmentCalculator.CalculateSum(model);
 			Result = result.Result;
 			State = result.State;

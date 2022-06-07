@@ -7,8 +7,8 @@ using InvestmentCalculator.Lib.Models;
 
 namespace InvestmentCalculator.Lib.Interfaces
 {
-	public interface IInvestmentCalculator
+	public interface IInvestmentCalculateService
 	{
-		public ExecutionResult<decimal> CalculateSum(InvestmentModel model);
+		public ExecutionResult<double> CalculateSum(InvestmentModel model);
 	}
 }

@@ -8,7 +8,7 @@ namespace InvestmentCalculator.Desktop
 		public MainWindow()
 		{
 			InitializeComponent();
-			this.DataContext = new CalculatorViewModel(new InvestmentCalculator.Lib.Services.InvestmentCalculator());
+			this.DataContext = new CalculatorViewModel(new InvestmentCalculator.Lib.Services.InvestmentCalculateService());
 		}
 	}
 }
